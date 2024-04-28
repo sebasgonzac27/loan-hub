@@ -7,6 +7,7 @@ use App\Filament\Resources\ProgramResource\RelationManagers;
 use App\Models\Program;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -66,7 +67,7 @@ class ProgramResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\ClientsRelationManager::class,
         ];
     }
 

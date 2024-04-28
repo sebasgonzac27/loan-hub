@@ -10,4 +10,8 @@ class Program extends Model
     use HasFactory;
 
     protected $fillable = ['code', 'name'];
+
+    public function clients(){
+        return $this->belongsToMany(Client::class, 'clients_programs')->withTimestamps();
+    }
 }
