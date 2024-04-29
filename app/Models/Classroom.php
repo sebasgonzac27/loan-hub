@@ -15,4 +15,9 @@ class Classroom extends Model
     {
         return $this->belongsTo(Campus::class);
     }
+
+    public function loans()
+    {
+        return $this->hasMany(Loan::class);
+    }
 }

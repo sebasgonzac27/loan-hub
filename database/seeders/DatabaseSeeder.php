@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\Program;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,6 +22,19 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             DeviceSeeder::class,
             ProgramSeeder::class,
+            ClientSeeder::class,
+            LoanSeeder::class,
+            Devices_LoansSeeder::class,
+
         ]);
+        DB::table('clients_programs')->insert([
+            'client_id' => 1,
+            'program_id' => 1,
+        ]);
+        DB::table('clients_programs')->insert([
+            'client_id' => 2,
+            'program_id' => 2,
+        ]);
+        
     }
 }

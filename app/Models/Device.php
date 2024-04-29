@@ -26,4 +26,9 @@ class Device extends Model
     {
         return $this->belongsTo(Campus::class);
     }
+
+    public function loan()
+    {
+        return $this->belongsToMany(Loan::class, 'devices_loans')->withTimestamps();
+    }
 }

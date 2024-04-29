@@ -14,4 +14,8 @@ class Client extends Model
     public function programs(){
         return $this->belongsToMany(Program::class, 'clients_programs')->withTimestamps();
     }
+
+    public function loans(){
+        return $this->hasMany(Loan::class);
+    }
 }
