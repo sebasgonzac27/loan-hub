@@ -23,6 +23,9 @@ class DatabaseSeeder extends Seeder
             DeviceSeeder::class,
             ProgramSeeder::class,
             ClientSeeder::class,
+            LoanSeeder::class,
+            Devices_LoansSeeder::class,
+
         ]);
         DB::table('clients_programs')->insert([
             'client_id' => 1,

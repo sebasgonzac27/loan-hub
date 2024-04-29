@@ -23,7 +23,70 @@ class LoanResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\Select::make('client_id')
+                    ->relationship('client', 'name')
+                    ->required()
+                    ->searchable()
+                    ->preload()
+                    ->createOptionForm([
+                        Forms\Components\TextInput::make('code')
+                            ->numeric()
+                            ->required(),
+                        Forms\Components\TextInput::make('name')
+                            ->required(),
+                        Forms\Components\TextInput::make('email')
+                            ->email()
+                            ->required(),
+                        Forms\Components\Select::make('programs')
+                            ->relationship('programs', 'name')
+                            ->multiple()
+                            ->searchable()
+                            ->preload()
+                    ]),
+                Forms\Components\Select::make('program_id')
+                    ->relationship('program', 'name')
+                    ->required()
+                    ->searchable()
+                    ->preload(),
+                Forms\Components\Select::make('status')
+                    ->options([
+                        'Prestado' => 'Prestado',
+                        'Devuelto' => 'Devuelto',
+                    ])
+                    ->required(),
+                Forms\Components\Datepicker::make('loan_date')
+                    ->required(),
+                Forms\Components\Datepicker::make('return_date'),
+
+                Forms\Components\TextInput::make('activity')
+                    ->nullable(),  
+                
+                Forms\Components\Select::make('classroom_id')    
+                    ->relationship('classroom', 'name')
+                    ->required()
+                    ->searchable()
+                    ->preload(),
+                Forms\Components\Textarea::make('observations')
+                    ->nullable()
+                    ->maxLength(255),
+                
+                Forms\Components\Select::make('User_id')
+                    ->relationship('user', 'name')
+                    ->required()
+                    ->searchable()
+                    ->preload(),  
+                
+                Forms\Components\Select::make('User_id_return')   
+                    ->relationship('user', 'name')
+                    ->searchable()
+                    ->preload(),
+                
+                Forms\Components\Select::make('Device_id')
+                    ->relationship('device', 'name')
+                    ->required()
+                    ->searchable()
+                    ->multiple()
+                    ->preload(),
             ]);
     }
 
@@ -31,7 +94,21 @@ class LoanResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('client.name')
+                    ->label('Client')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('program.name')
+                    ->label('Program'),
+                Tables\Columns\TextColumn::make('status')
+                    ->badge()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('loan_date')
+                    ->dateTime()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('return_date')
+                    ->dateTime()
+                    ->sortable()
             ])
             ->filters([
                 //
