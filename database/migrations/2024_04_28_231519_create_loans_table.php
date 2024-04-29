@@ -14,16 +14,16 @@ return new class extends Migration
     {
         Schema::create('loans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('client_id')->constrained()->onDelete('cascade');
-            $table->foreignId('program_id')->constrained()->onDelete('cascade');
+            $table->foreignId('client_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('program_id')->constrained()->cascadeOnDelete();
             $table->enum('status',['Prestado','Devuelto'])->default('Prestado');
             $table->date('loan_date');
             $table->date('return_date')->nullable();
             $table->string('activity')->nullable();
-            $table->foreignId('classroom_id')->constrained()->onDelete('cascade');
-            $table->string('observations')->nullable();
-            $table->foreignId('User_id')->constrained()->onDelete('cascade');
-            $table->foreignId('User_id_return')->nullable()->constrained()->onDelete('cascade');
+            $table->foreignId('classroom_id')->constrained()->cascadeOnDelete();
+            $table->text('observations')->nullable();
+            $table->foreignId('User_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('User_id_return')->nullable()->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
