@@ -23,70 +23,90 @@ class LoanResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('client_id')
-                    ->relationship('client', 'name')
-                    ->required()
-                    ->searchable()
-                    ->preload()
-                    ->createOptionForm([
-                        Forms\Components\TextInput::make('code')
-                            ->numeric()
-                            ->required(),
-                        Forms\Components\TextInput::make('name')
-                            ->required(),
-                        Forms\Components\TextInput::make('email')
-                            ->email()
-                            ->required(),
-                        Forms\Components\Select::make('programs')
-                            ->relationship('programs', 'name')
-                            ->multiple()
-                            ->searchable()
-                            ->preload()
-                    ]),
-                Forms\Components\Select::make('program_id')
-                    ->relationship('program', 'name')
-                    ->required()
-                    ->searchable()
-                    ->preload(),
-                Forms\Components\Select::make('status')
-                    ->options([
-                        'Prestado' => 'Prestado',
-                        'Devuelto' => 'Devuelto',
-                    ])
-                    ->required(),
-                Forms\Components\Datepicker::make('loan_date')
-                    ->required(),
-                Forms\Components\Datepicker::make('return_date'),
+                Forms\Components\Wizard::make([
+                    Forms\Components\Wizard\Step::make('Client')
+                        ->schema([
+                            Forms\Components\Select::make('client_id')
+                                ->relationship('client', 'name')
+                                ->searchable()
+                                ->preload()
+                                ->createOptionForm([
+                                    Forms\Components\TextInput::make('code')
+                                        ->numeric()
+                                        ->required(),
+                                    Forms\Components\TextInput::make('name')
+                                        ->required(),
+                                    Forms\Components\TextInput::make('email')
+                                        ->email()
+                                        ->required(),
+                                    Forms\Components\Select::make('programs')
+                                        ->relationship('programs', 'name')
+                                        ->multiple()
+                                        ->searchable()
+                                        ->preload()
+                                ])
+                                ->required(),
+                            Forms\Components\Select::make('program_id')
+                                ->relationship('program', 'name')
+                                ->required()
+                                ->searchable()
+                                ->preload(),
+                        ]),
+                    Forms\Components\Wizard\Step::make('Location')
+                        ->schema([
+                            Forms\Components\Select::make('classroom_id')
+                                ->relationship('classroom', 'name')
+                                ->required()
+                                ->searchable()
+                                ->preload(),
+                        ]),
+                    Forms\Components\Wizard\Step::make('Devices')
+                        ->schema([
+                            Forms\Components\Repeater::make('devices')
+                                ->schema([
+                                    Forms\Components\Select::make('device_id')
+                                        ->relationship('device', 'name')
+                                        ->required()
+                                        ->searchable()
+                                        ->preload(),
+                                ])
+                                ->required()
+                                ->addActionLabel('Add device')
+                                ->columnSpanFull(),
+                            Forms\Components\Textarea::make('observations')
+                                ->nullable()
+                                ->maxLength(255),
+                        ]),
+                    Forms\Components\Wizard\Step::make('Confirmation')
+                        ->schema([])
+                ])
+                    ->columnSpanFull(),
 
-                Forms\Components\TextInput::make('activity')
-                    ->nullable(),  
-                
-                Forms\Components\Select::make('classroom_id')    
-                    ->relationship('classroom', 'name')
-                    ->required()
-                    ->searchable()
-                    ->preload(),
-                Forms\Components\Textarea::make('observations')
-                    ->nullable()
-                    ->maxLength(255),
-                
-                Forms\Components\Select::make('User_id')
-                    ->relationship('user', 'name')
-                    ->required()
-                    ->searchable()
-                    ->preload(),  
-                
-                Forms\Components\Select::make('User_id_return')   
-                    ->relationship('user', 'name')
-                    ->searchable()
-                    ->preload(),
-                
-                Forms\Components\Select::make('Device_id')
-                    ->relationship('device', 'name')
-                    ->required()
-                    ->searchable()
-                    ->multiple()
-                    ->preload(),
+
+                // Forms\Components\Select::make('status')
+                //     ->options([
+                //         'Prestado' => 'Prestado',
+                //         'Devuelto' => 'Devuelto',
+                //     ])
+                //     ->required(),
+                // Forms\Components\DatePicker::make('loan_date')
+                //     ->required(),
+                // Forms\Components\DatePicker::make('return_date'),
+
+                // Forms\Components\TextInput::make('activity')
+                //     ->nullable(),
+
+
+                // Forms\Components\Select::make('User_id')
+                //     ->relationship('user', 'name')
+                //     ->searchable()
+                //     ->preload()
+                //     ->required(),
+
+                // Forms\Components\Select::make('User_id_return')
+                //     ->relationship('user', 'name')
+                //     ->searchable()
+                //     ->preload(),
             ]);
     }
 
