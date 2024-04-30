@@ -31,12 +31,22 @@ class Loan extends Model
         return $this->belongsTo(Program::class);
     }
 
+    public function campus()
+    {
+        return $this->belongsTo(Campus::class);
+    }
+
     public function classroom()
     {
         return $this->belongsTo(Classroom::class);
     }
 
-    public function device()
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class, 'devices_loans')->withTimestamps();
+    }
+
+    public function devices()
     {
         return $this->belongsToMany(Device::class, 'devices_loans')->withTimestamps();
     }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Category;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,8 +16,9 @@ return new class extends Migration
     {
         Schema::create('devices_loans', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Device::class);
-            $table->foreignIdFor(Loan::class);
+            $table->foreignIdFor(Category::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Device::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Loan::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
