@@ -15,4 +15,9 @@ class Category extends Model
     {
         return $this->hasMany(Device::class);
     }
+
+    public function loans()
+    {
+        return $this->belongsToMany(Loan::class, 'devices_loans')->withTimestamps();
+    }
 }

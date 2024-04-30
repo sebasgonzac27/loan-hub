@@ -20,4 +20,9 @@ class Campus extends Model
     {
         return $this->hasMany(Device::class);
     }
+
+    public function loans()
+    {
+        return $this->hasMany(Loan::class);
+    }
 }
