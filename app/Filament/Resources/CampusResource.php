@@ -52,6 +52,7 @@ class CampusResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -72,6 +73,7 @@ class CampusResource extends Resource
         return [
             'index' => Pages\ListCampuses::route('/'),
             'create' => Pages\CreateCampus::route('/create'),
+            'view' => Pages\ViewCampus::route('/{record}'),
             'edit' => Pages\EditCampus::route('/{record}/edit'),
         ];
     }
