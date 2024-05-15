@@ -13,12 +13,15 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        Category::factory()->create([
-            'name' => 'Computadoras'
-        ]);
+        $categories = [
+            ['name' => 'Convertidores'],
+            ['name' => 'Cables'],
+            ['name' => 'Portátiles'],
+            ['name' => 'Parlantes']
+        ];
 
-        Category::factory()->create([
-            'name' => 'Proyectores'
-        ]);
+        foreach ($categories as $category) {
+            Category::create($category);
+        }
     }
 }

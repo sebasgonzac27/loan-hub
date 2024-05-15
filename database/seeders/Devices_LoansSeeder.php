@@ -13,15 +13,6 @@ class Devices_LoansSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('devices_loans')->insert([
-            'category_id' => 1,
-            'device_id' => 1,
-            'loan_id' => 1,
-        ]);
-        DB::table('devices_loans')->insert([
-            'category_id' => 2,
-            'device_id' => 2,
-            'loan_id' => 2,
-        ]);
+        //
     }
 }

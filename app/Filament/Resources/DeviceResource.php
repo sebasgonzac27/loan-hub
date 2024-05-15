@@ -35,7 +35,7 @@ class DeviceResource extends Resource
                     ->options([
                         'available' => 'Available',
                         'in_use' => 'In Use',
-                        'maintenance' => 'Maintenance',
+                        'damaged' => 'Damaged',
                     ]),
                 Forms\Components\Select::make('category_id')
                     ->relationship('category', 'name')
@@ -84,12 +84,12 @@ class DeviceResource extends Resource
                     ->color(fn (string $state) => match ($state) {
                         'available' => 'success',
                         'in_use' => 'warning',
-                        'maintenance' => 'danger',
+                        'damaged' => 'danger',
                     })
                     ->formatStateUsing(fn (string $state) => match ($state) {
                         'available' => 'Available',
                         'in_use' => 'In Use',
-                        'maintenance' => 'Maintenance',
+                        'damaged' => 'Damaged',
                     }),
             ])
             ->filters([

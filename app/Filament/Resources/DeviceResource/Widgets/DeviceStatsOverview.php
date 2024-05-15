@@ -23,7 +23,7 @@ class DeviceStatsOverview extends BaseWidget
                 ->description('The total number of devices currently in use')
                 ->icon('heroicon-o-pause-circle')
                 ->color('warning'),
-            Stat::make('Maintenance Devices', Device::query()->where('status', 'maintenance')->count())
+            Stat::make('Maintenance Devices', Device::query()->where('status', 'damaged')->count())
                 ->description('The total number of devices currently in maintenance')
                 ->icon('heroicon-o-exclamation-circle')
                 ->color('danger'),

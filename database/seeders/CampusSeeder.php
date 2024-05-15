@@ -13,12 +13,14 @@ class CampusSeeder extends Seeder
      */
     public function run(): void
     {
-        Campus::factory()->create([
-            'name' => 'Villa Campestre'
-        ]);
+        $campuses = [
+            ['name' => 'Villa Campestre'],
+            ['name' => 'Victoria'],
+            ['name' => 'Príncipe']
+        ];
 
-        Campus::factory()->create([
-            'name' => 'Príncipe'
-        ]);
+        foreach ($campuses as $campus) {
+            Campus::create($campus);
+        }
     }
 }

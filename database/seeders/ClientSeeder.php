@@ -13,16 +13,6 @@ class ClientSeeder extends Seeder
      */
     public function run(): void
     {
-        Client::factory()->create([
-            'code' => '001',
-            'name' => 'Client1',
-            'email' => "Client@example.com"
-        ]);
-
-        Client::factory()->create([
-            'code' => '002',
-            'name' => 'Client2',
-            'email' => "Client2@example.com"
-        ]);
+        //
     }
 }

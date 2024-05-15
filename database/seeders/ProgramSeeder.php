@@ -13,14 +13,15 @@ class ProgramSeeder extends Seeder
      */
     public function run(): void
     {
-        Program::factory()->create([
-            'code' => 3743,
-            'name' => 'Ingeniería de Sistemas'
-        ]);
+        $programs = [
+            ['code' => 3743, 'name' => 'Ingeniería de Sistemas'],
+            ['code' => 3753, 'name' => 'Ingeniería de Alimentos'],
+            ['code' => 3845, 'name' => 'Administración de Empresas'],
+            ['code' => 3841, 'name' => 'Contaduría Pública'],
+        ];
 
-        Program::factory()->create([
-            'code' => 3753,
-            'name' => 'Ingeniería de Alimentos'
-        ]);
+        foreach ($programs as $program) {
+            Program::create($program);
+        }
     }
 }

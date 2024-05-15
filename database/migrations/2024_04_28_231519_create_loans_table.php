@@ -21,7 +21,6 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Program::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Client::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(Campus::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Classroom::class)->constrained()->cascadeOnDelete();
             $table->enum('status',['reserved', 'in_course', 'finished', 'in_debt'])->default('in_course');
             $table->timestamp('loan_date')->default(now());

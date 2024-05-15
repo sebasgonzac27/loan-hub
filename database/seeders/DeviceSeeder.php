@@ -13,18 +13,20 @@ class DeviceSeeder extends Seeder
      */
     public function run(): void
     {
-        Device::factory()->create([
-            'name' => 'Computadora 1',
-            'category_id' => 1,
-            'campus_id' => 1,
-            'status' => 'available'
-        ]);
+        $devices = [
+            ['name' => 'Convertidor HDMI a VGA', 'category_id' => 1, 'campus_id' => 1, 'status' => 'damaged'],
+            ['name' => 'Cable HDMI', 'category_id' => 2, 'campus_id' => 1],
+            ['name' => 'Cable VGA', 'category_id' => 2, 'campus_id' => 1],
+            ['name' => 'Portátil HP', 'category_id' => 3, 'campus_id' => 2, 'status' => 'damaged'],
+            ['name' => 'Portátil Lenovo', 'category_id' => 3, 'campus_id' => 2],
+            ['name' => 'Portátil Dell', 'category_id' => 3, 'campus_id' => 2],
+            ['name' => 'Parlante JBL', 'category_id' => 4, 'campus_id' => 3, 'status' => 'damaged'],
+            ['name' => 'Parlante Sony', 'category_id' => 4, 'campus_id' => 3],
+            ['name' => 'Parlante Bose', 'category_id' => 4, 'campus_id' => 3],
+        ];
 
-        Device::factory()->create([
-            'name' => 'Computadora 2',
-            'category_id' => 1,
-            'campus_id' => 2,
-            'status' => 'in_use'
-        ]);
+        foreach ($devices as $device) {
+            Device::create($device);
+        }
     }
 }

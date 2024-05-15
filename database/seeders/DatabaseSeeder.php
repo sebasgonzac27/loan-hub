@@ -27,14 +27,5 @@ class DatabaseSeeder extends Seeder
             Devices_LoansSeeder::class,
 
         ]);
-        DB::table('clients_programs')->insert([
-            'client_id' => 1,
-            'program_id' => 1,
-        ]);
-        DB::table('clients_programs')->insert([
-            'client_id' => 2,
-            'program_id' => 2,
-        ]);
-        
     }
 }

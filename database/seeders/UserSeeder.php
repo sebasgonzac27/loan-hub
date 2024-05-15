@@ -15,16 +15,13 @@ class UserSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-            'password' => 'test'
-        ]);
+        $users = [
+            [ 'name' => 'Admin', 'email' => 'admin@example.com', 'password' => 'admin'],
+            [ 'name' => 'Test', 'email' => 'test@example.com', 'password' => 'test'],
+        ];
 
-        User::factory()->create([
-            'name' => 'Test User 2',
-            'email' => 'test2@exaample.com',
-            'password' => 'test2'
-        ]);
+        foreach ($users as $user) {
+            User::create($user);
+        }
     }
 }

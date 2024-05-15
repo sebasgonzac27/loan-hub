@@ -16,7 +16,6 @@ return new class extends Migration
     {
         Schema::create('devices_loans', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Category::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Device::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Loan::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
