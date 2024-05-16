@@ -67,12 +67,12 @@ class DevicesRelationManager extends RelationManager
                 ->color(fn (string $state) => match ($state) {
                     'available' => 'success',
                     'in_use' => 'warning',
-                    'maintenance' => 'danger',
+                    'damaged' => 'danger',
                 })
                 ->formatStateUsing(fn (string $state) => match ($state) {
                     'available' => 'Available',
                     'in_use' => 'In Use',
-                    'maintenance' => 'Maintenance',
+                    'damaged' => 'Damaged',
                 }),
             ])
             ->filters([
